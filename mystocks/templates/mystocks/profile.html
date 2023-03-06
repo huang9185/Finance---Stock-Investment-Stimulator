@@ -1,0 +1,39 @@
+{% extends "mystocks/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6">
+            <canvas class="my-4 w-100 chartjs-render-monitor" id="amtChart"></canvas>
+        </div>
+        <div class="col-md-6">
+            <canvas class="my-4 w-100 chartjs-render-monitor" id="volChart"></canvas>
+        </div>
+    </div>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Quote</th>
+                <th scope="col">Total # Shares Owned</th>
+                <th scope="col">Total # paid</th>
+                <th scope="col">Total # earned</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for share in shares %}
+                <tr>
+                    <th scope="row"><a href="{% url 'stock' share.quote %}">{{ share.quote }}</a></th>
+                    <td>{{ share.numberTotal }}</td>
+                    <td>{{ share.paidTotal }}</td>
+                    <td>{{ share.earnedTotal }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mystocks/profile.js' %}"></script>
+{% endblock %}

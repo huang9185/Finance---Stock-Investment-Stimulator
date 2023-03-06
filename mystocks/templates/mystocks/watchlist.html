@@ -1,0 +1,54 @@
+{% extends "mystocks/layout.html" %}
+{% load static %}
+{% load bootstrap_icons %}
+
+{% block body %}
+	<link rel="stylesheet" href="{% static 'mystocks/watchlist.css' %}">
+    {% for watch in watches %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ watch.quote }}</h5>
+                <p class="card-text text-muted"> {{ watch.company }}</p>
+                <p class="card-text">Is watched since {{ watch.first_created }}</p>
+                <a href="{% url 'stock' watch.quote %}" class="btn btn-primary">Stock Details</a>
+            </div>
+        </div>
+    {% endfor %}
+    <nav>
+        <ul class="pagination">
+			{% if watches.has_previous %}
+				<li class="page-item">
+					<a class="page-link" href="?page={{ watches.previous_page_number }}">
+						Previous
+					</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="?page=1">1</a>
+				</li>
+			{% else %}
+				<li class="page-item disabled">
+					<a href="#" class="page-link">Previous</a>
+				</li>
+			{% endif %}
+
+			<li class="page-item active"><a class="page-link" href="#">{{ watches.number }}</a></li>
+			
+			{% if watches.has_next %}
+				
+				<li class="page-item">
+					<a class="page-link" href="?page={{watches.paginator.num_pages}}">{{ watches.paginator.num_pages }}</a>
+				</li>
+				<li class="page-item">
+					<a href="?page={{ watches.next_page_number }}" class="page-link">
+					Next</a>
+				</li>
+			{% else %}
+				<li class="page-item disabled">
+					<a href="#" class="page-link">
+					Next</a>
+				</li>
+			{% endif %}
+
+        </ul>
+	</nav>
+{% endblock %}

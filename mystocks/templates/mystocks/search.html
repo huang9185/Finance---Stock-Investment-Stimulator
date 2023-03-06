@@ -1,0 +1,24 @@
+{% extends "mystocks/layout.html" %}
+{% load static %}
+{% block body %}
+    <form class="row g-3"action="{{ category }}" data-api="{{api}}" method="post">
+        {% csrf_token %}
+        <div class="col-auto">
+            <input class="form-control" name="input" id="input" type="text" placeholder="Quote Name">
+            {% if message %}
+                <div class="form-text">{{ message }}</div>
+            {% endif %}
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3" id="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+    </form>
+    <ul class="list-group" id="search-list">
+    </ul>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mystocks/search.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "mystocks/layout.html" %}
+
+{% block body %}
+    {% if message %}
+        <h1>{{ message }}</h1>
+        <hr>
+    {% endif %}
+
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="InputUsername" class="form-label">Username</label>
+            <input type="text" class="form-control" id="InputUsername" name="username">
+        </div>
+        <div class="mb-3">
+            <label for="InputPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="InputPassword" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <a href="{% url 'register' %}">Register instead</a>
+{% endblock %}

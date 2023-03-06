@@ -1,0 +1,76 @@
+{% extends "mystocks/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <link rel="stylesheet" href="{% static 'mystocks/stock.css' %}">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1>{{ quote }}</h1>
+        <h2 hidden>{{ api }}</h2>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <button class="tool btn btn-sm btn-outline-secondary" data-watch="{{ is_watched }}">
+            </button>
+            <form action="{% url 'share' quote %}" method='get'>
+                <button type="submit" class="tool btn btn-sm btn-outline-secondary">Purchase</button>
+            </form>
+            {% if share == "true" %}
+            <form action="{% url 'sell' quote %}" method='get'>
+                <button type="submit" class="tool btn btn-sm btn-outline-secondary">Sell</button>
+            </form>
+            {% endif %}
+            <form action="{% url 'company' quote %}" method='get'>
+                <button type="submit" class="tool btn btn-sm btn-outline-secondary">Company</button>
+            </form>
+            <div class="dropdown">
+                <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <!-- reserved for time periods choice todo-->
+                    Time Period
+                </button>
+                <select class="dropdown-menu">
+                    <option class="dropdown-item href="#">1D</option>
+                    <option class="dropdown-item href="#">15D</option>
+                    <option class="dropdown-item href="#">1M</option>
+                    <option class="dropdown-item href="#">5M</option>
+                    <option class="dropdown-item href="#">1Y</option>
+                    <option class="dropdown-item href="#">5Y</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <!-- chart of history according to the time choice-->
+    <canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="792" height="333" style="display: block; height: 222px; width: 528px;"></canvas>
+    <h2>By Date {{ latest }}</h2>
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th scope="col">Open</th>
+                <th scope="col">High</th>
+                <th scope="col">Low</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td name="open-value">{{ open }}</td>
+                <td name="high-value">{{ high }}</td>
+                <td name="low-value">{{ low }}</td>
+                <td name="price-value">{{ price }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Volume</th>
+                <th scope="col">Previous close</th>
+                <th scope="col">Change</th>
+                <th scope="col">Change percent</th>
+            </tr>
+            <tr>
+                <td name="volume-value">{{ volume }}</td>
+                <td name="previous-close-value">{{ previousclose }}</td>
+                <td name="change-value">{{ change }}</td>
+                <td name="change-percent">{{ changepercent }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mystocks/stock.js' %}"></script>
+{% endblock %}

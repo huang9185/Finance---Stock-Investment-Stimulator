@@ -1,0 +1,14 @@
+#frame {
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#homebtn {
+    margin: 70px;
+    right: 0;
+    bottom:0;
+    position: fixed;
+    border-radius: 50px;
+    padding: 20px;
+}

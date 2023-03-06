@@ -1,0 +1,27 @@
+{% extends "mystocks/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="card">
+        <div class="card-body">
+        <h5 class="card-title">{{ share.quote }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted" data-total="{{share.numberTotal}}">Volumes currently owned: {{ share.numberTotal }}</h6>
+        <p class="card-text">In total, you paid ${{ share.paidTotal }} and earned ${{ share.earnedTotal }}</p>
+        <p class="card-text">Currently, it is at ${{ price }} per share</p>
+        </div>
+    </div>
+    <form action="{% url 'sell' share.quote %}" method='post'>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="sharenumber" class="form-label"># shares to sell</label>
+            <input type="number" class="form-control" id="sharenumber" name="number">
+        </div>
+        <input hidden name="price" id="price" value="{{ price }}">
+        <div class="form-text"></div>
+        <button type="submit" class="btn btn-primary" id="submit">Sell</button>
+    </form>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mystocks/sell.js' %}"></script>
+{% endblock %}

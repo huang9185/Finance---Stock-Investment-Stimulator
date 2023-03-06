@@ -1,0 +1,24 @@
+{% extends "mystocks/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <form action="{% url 'share' quote %}" method='post'>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="quotename" dataset-api="{{ api }}" class="form-label">Quote Name</label>
+            <input type="text" class="form-control" id="quotename" placeholder="{{ quote }}" value="{{ quote }}" name="quote">
+        </div>
+        <div class="mb-3">
+            <label for="sharenumber" class="form-label"># shares</label>
+            <input type="number" class="form-control" id="sharenumber" name="number">
+        </div>
+        <input hidden name="price" id="price">
+        <div id="sharetotal" class="form-text">
+        </div>
+        <button type="submit" class="btn btn-primary" id="submit">Purchase</button>
+    </form>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mystocks/share.js' %}"></script>
+{% endblock %}
