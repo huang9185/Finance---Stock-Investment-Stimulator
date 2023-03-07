@@ -47,8 +47,6 @@
 
 The idea of an investment simulator comes from my interdisciplinary study in finance course. I hope to build such a web app that is more user-friendly and can help them practice their investment skills with real time data.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 ### Built With
@@ -62,8 +60,6 @@ The idea of an investment simulator comes from my interdisciplinary study in fin
 * [![Chart][Chart.js]][Chart-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![Alphavantage][Alphavantage.com]][Alphavantage-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -135,9 +131,6 @@ The idea of an investment simulator comes from my interdisciplinary study in fin
 * To go back to the stock page, click the *stock details* button.
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- FILE STRUCTURE -->
 ## File Structure
@@ -153,11 +146,11 @@ Below is a list of files and folders created by me. Click on them to see details
         <details>
           <summary><a href="#static">static</a></summary>
           <ul>
-            <li><a href="#profile-js">profile.js</a></li>
-            <li><a href="#search-js">search.js</a></li>
-            <li><a href="#sell-js">sell.js</a></li>
-            <li><a href="#share-js">share.js</a></li>
-            <li><a href="#stock-js">stock.js</a></li>
+            <li><a href="#profile.js">profile.js</a></li>
+            <li><a href="#search.js">search.js</a></li>
+            <li><a href="#sell.js">sell.js</a></li>
+            <li><a href="#share.js">share.js</a></li>
+            <li><a href="#stock.js">stock.js</a></li>
           </ul>
         </details>
         <details>
@@ -342,10 +335,11 @@ Contains cards regarding the stocks that are watched and a pagination on the bot
 #### [models.py](/mystocks/models.py)
 There are five classes created. For all the classes below, default primary keys of id would not be mentioned. Repetitive fields will not have their details mentioned.
 
-<mark>User class</mark>
+> User
+
 The standard user class as a child of django user model
 
-<mark>Watch class</mark>
+> Watch
 The class used to fill the watchlist file. Contains four fields:
 
 * *user*: an integer field of user id
@@ -353,7 +347,7 @@ The class used to fill the watchlist file. Contains four fields:
 * *company*: a char field of the company related to the stock
 * *first_created*: a date-time field that is automatically created with the model is created
 
-<mark>Purchase class</mark>
+> Purchase
 The class of purchase transactions. Contains six fields:
 
 * *user*
@@ -363,7 +357,7 @@ The class of purchase transactions. Contains six fields:
 * *price*: a decimal field containing individual prices when purchased in two decimal places
 * *label*: a char field always containing value of *bought*, used for categorization by the backend for history file
 
-<mark>Sell class</mark>
+> Sell
 The class of sell transactions. Contains six fields:
 
 * *user*
@@ -373,7 +367,7 @@ The class of sell transactions. Contains six fields:
 * *price*
 * *label*: a char field always containing value of *sold*, used for categorization by the backend for history file
 
-<mark>Share class</mark>
+> Share
 The class of total shares owned per stock. Contains five fields:
 
 * *user*
@@ -421,27 +415,25 @@ The route aboves serves as a special API route which takes two variables used to
 #### [views.py](/mystocks/views.py)
 
 | Function Name | Request Method | Parameters | Return Value | Description |
-| --- | --- | --- | --- | --- | --- |
-| home | GET | request | render home page if authenticated, login page otherwise ||
-| history | GET | request | render history page ||
-| watchlist | GET | request | render watchlist page ||
+| --- | --- | --- | --- | --- |
+| home | GET | request | render home page if authenticated, login page otherwise | |
+| history | GET | request | render history page | |
+| watchlist | GET | request | render watchlist page | |
 | watch | GET | request, quote, is_watched | return Json Response | create watch objects or delete watch objects |
 | stock | GET | request, quote | render stock page | generate stock info using api |
-| sell | GET | request, quote | render sell page ||
-|| POST | | redirect to profile page | deal with purchase transactions |
-| share | GET | request, quote | render share page ||
-|| POST || redirect to profile page | deal with sell transactions |
-| search | GET | request, category | render search page ||
-|| POST || render search if stock does not exist, redirect to company or stock otherwise depending on category argument ||
-| company | GET | request, quote | render company page ||
-| profile | GET | request | render profile page ||
-| register_view | POST | request | register page if input invalid, home page otherwise ||
+| sell | GET | request, quote | render sell page | |
+| | POST | | redirect to profile page | deal with purchase transactions |
+| share | GET | request, quote | render share page | |
+| | POST | | redirect to profile page | deal with sell transactions |
+| search | GET | request, category | render search page | |
+| | POST | | render search if stock does not exist, redirect to company or stock otherwise depending on category argument | |
+| company | GET | request, quote | render company page | |
+| profile | GET | request | render profile page | |
+| register_view | POST | request | register page if input invalid, home page otherwise | |
 | | GET | | render register page | |
-| login_view | POST | request | render home page if input valid, login page otherwise ||
+| login_view | POST | request | render home page if input valid, login page otherwise | |
 | | GET | | render login page | |
-| logout_view | GET | request | render login page ||
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+| logout_view | GET | request | render login page | |
 
 
 
@@ -455,12 +447,14 @@ The project overall is very complex while working with tens of htmls and multipl
 * Provide matches for uncompleted searching input
 
 <ins># of models:</ins> 5
-<ins># of js functions:</ins> 8
-<ins># of html pages:</ins> 12
-<ins># of urls:</ins> 13
-<ins># of views:</ins> 13
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<ins># of js functions:</ins> 8
+
+<ins># of html pages:</ins> 12
+
+<ins># of urls:</ins> 13
+
+<ins># of views:</ins> 13
 
 
 
