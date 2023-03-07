@@ -340,6 +340,7 @@ There are five classes created. For all the classes below, default primary keys 
 The standard user class as a child of django user model
 
 > Watch
+
 The class used to fill the watchlist file. Contains four fields:
 
 * *user*: an integer field of user id
@@ -348,6 +349,7 @@ The class used to fill the watchlist file. Contains four fields:
 * *first_created*: a date-time field that is automatically created with the model is created
 
 > Purchase
+
 The class of purchase transactions. Contains six fields:
 
 * *user*
@@ -358,6 +360,7 @@ The class of purchase transactions. Contains six fields:
 * *label*: a char field always containing value of *bought*, used for categorization by the backend for history file
 
 > Sell
+
 The class of sell transactions. Contains six fields:
 
 * *user*
@@ -368,6 +371,7 @@ The class of sell transactions. Contains six fields:
 * *label*: a char field always containing value of *sold*, used for categorization by the backend for history file
 
 > Share
+
 The class of total shares owned per stock. Contains five fields:
 
 * *user*
